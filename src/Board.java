@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
+import java.util.zip.DataFormatException;
 
 public class Board extends JComponent implements KeyListener {
 
@@ -12,7 +13,6 @@ public class Board extends JComponent implements KeyListener {
     private final int BOARD_HEIGHT = 720;
     public static final int TILES_ROW = 10;
     public static final int TILES_COLUMN = 10;
-
 
 
     public Board() {
@@ -31,11 +31,24 @@ public class Board extends JComponent implements KeyListener {
 //        graphics.fillRect(testBoxX, testBoxY, 100, 100);
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
-        for (int y = 0; y < BOARD_HEIGHT; y += BOARD_HEIGHT / TILES_COLUMN) {
-            for (int x = 0; x < BOARD_WIDTH; x += BOARD_WIDTH / TILES_ROW) {
-                PositionedImage image = new PositionedImage("resources/img/gif/floor.gif", x, y);
-                image.draw(graphics);
+        MapLoader map = new MapLoader();
+        try {
+            int[][] matrix = map.getLevelMatrix();
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    int x = j * BOARD_WIDTH / TILES_ROW;
+                    int y = i * BOARD_HEIGHT / TILES_COLUMN;
+                    if (matrix[i][j] == 0) {
+                        PositionedImage image = new PositionedImage("resources/img/gif/floor.gif", x, y);
+                        image.draw(graphics);
+                    } else {
+                        PositionedImage image = new PositionedImage("resources/img/gif/wall.gif", x, y);
+                        image.draw(graphics);
+                    }
+                }
             }
+        } catch (FileNotFoundException | DataFormatException e) {
+            System.err.println(e.getMessage());
         }
     }
 
