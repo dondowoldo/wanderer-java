@@ -2,16 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 public class Board extends JComponent implements KeyListener {
 
     int testBoxX;
     int testBoxY;
     private final int BOARD_WIDTH = 720;
-    private final int TILES_ROW = 10;
     private final int BOARD_HEIGHT = 720;
+    public static final int TILES_ROW = 10;
+    public static final int TILES_COLUMN = 10;
 
-    private final int TILES_COLUMN = 10;
 
 
     public Board() {
@@ -32,7 +33,7 @@ public class Board extends JComponent implements KeyListener {
         // you can create and draw an image using the class below e.g.
         for (int y = 0; y < BOARD_HEIGHT; y += BOARD_HEIGHT / TILES_COLUMN) {
             for (int x = 0; x < BOARD_WIDTH; x += BOARD_WIDTH / TILES_ROW) {
-                PositionedImage image = new PositionedImage("img/gif/floor.gif", x, y);
+                PositionedImage image = new PositionedImage("resources/img/gif/floor.gif", x, y);
                 image.draw(graphics);
             }
         }

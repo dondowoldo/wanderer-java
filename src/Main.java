@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.rmi.ServerError;
+import java.util.zip.DataFormatException;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,5 +18,11 @@ public class Main {
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
+        MapLoader test = new MapLoader();
+        try {
+            test.getLevelMatrix(1);
+        } catch (FileNotFoundException | DataFormatException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
