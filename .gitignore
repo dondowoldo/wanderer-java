@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+### IntelliJ IDEA ###
+.idea
+=======
 # General
-*.zip
 *.log
 *.bak
 *.tmp
@@ -13,15 +16,41 @@ cmake-build-*/
 
 ### IntelliJ IDEA
 .idea
-out
 *.iws
 *.iml
 *.xml
 *.ipr
+>>>>>>> 909362d18c3226a53d4815478240097b88a9dff0
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+<<<<<<< HEAD
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+=======
 ## PyCharm
 *.iml
 modules.xml
@@ -86,3 +115,5 @@ nunit-*.xml
 
 ### Built Visual Studio Code Extensions
 *.vsix
+*.zip
+>>>>>>> 909362d18c3226a53d4815478240097b88a9dff0
