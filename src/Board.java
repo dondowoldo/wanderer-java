@@ -28,9 +28,7 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-//        graphics.fillRect(testBoxX, testBoxY, 100, 100);
-        // here you have a 720x720 canvas
-        // you can create and draw an image using the class below e.g.
+
         MapLoader map = new MapLoader();
         try {
             int[][] matrix = map.getLevelMatrix();
