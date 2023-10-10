@@ -1,6 +1,8 @@
 package utils;
 
+import gameobjects.structures.Block;
 import gameobjects.structures.Tile;
+import gameobjects.structures.Wall;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,8 +16,7 @@ import java.util.zip.DataFormatException;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class GameMap {
-    private static int[][] matrix;
-    private static Tile[][] map;
+    private static Block[][] map;
 
     public void loadLevelMatrix() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
@@ -31,14 +32,18 @@ public class GameMap {
         if (!fileIsValid(fileLines)) {
             throw new DataFormatException("File data not valid");
         }
-        int[][] levelMatrix = new int[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
+        map = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
+
         for (int i = 0; i < fileLines.size(); i++) {
             String[] values = fileLines.get(i).split("");
             for (int j = 0; j < values.length; j++) {
-                levelMatrix[i][j] = Integer.parseInt(values[j]);
+                if (Integer.parseInt(values[j]) == 0) {
+                    map[i][j] = new Tile(j, i);
+                } else {
+                    map[i][j] = new Wall(j, i);
+                }
             }
         }
-        matrix = levelMatrix;
     }
 
     private boolean fileIsValid(List<String> fileLines) {
@@ -64,7 +69,7 @@ public class GameMap {
         return true;
     }
 
-    public static int[][] getMatrix() {
-        return matrix;
+    public static Block[][] getMap() {
+        return map;
     }
 }

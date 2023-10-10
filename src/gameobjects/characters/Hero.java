@@ -1,5 +1,6 @@
 package gameobjects.characters;
 
+import interfaces.Impenetrable;
 import utils.GameLogic;
 import utils.GameMap;
 
@@ -51,25 +52,25 @@ public class Hero extends GameCharacter {
     public void move(String direction) {
         switch (direction) {
             case "up":
-                if (this.coordinateY != 0 && GameMap.getMatrix()[this.coordinateY - 1][this.coordinateX] != 1) {
+                if (this.coordinateY != 0 && !(GameMap.getMap()[this.coordinateY - 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY -= 1;
                     this.movesCount += 1;
                 }
                 break;
             case "down":
-                if (this.coordinateY != GameMap.getMatrix().length - 1 && GameMap.getMatrix()[this.coordinateY + 1][this.coordinateX] != 1) {
+                if (this.coordinateY != GameMap.getMap().length - 1 && !(GameMap.getMap()[this.coordinateY + 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY += 1;
                     this.movesCount += 1;
                 }
                 break;
             case "left":
-                if (this.coordinateX != 0 && GameMap.getMatrix()[this.coordinateY][this.coordinateX - 1] != 1) {
+                if (this.coordinateX != 0 && !(GameMap.getMap()[this.coordinateY][this.coordinateX - 1] instanceof Impenetrable)) {
                     this.coordinateX -= 1;
                     this.movesCount += 1;
                 }
                 break;
             case "right":
-                if (this.coordinateX != GameMap.getMatrix()[this.coordinateY].length - 1 && GameMap.getMatrix()[this.coordinateY][this.coordinateX + 1] != 1) {
+                if (this.coordinateX != GameMap.getMap()[this.coordinateY].length - 1 && !(GameMap.getMap()[this.coordinateY][this.coordinateX + 1] instanceof Impenetrable)) {
                     this.coordinateX += 1;
                     this.movesCount += 1;
                     break;

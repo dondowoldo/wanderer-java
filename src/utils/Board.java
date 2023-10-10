@@ -1,6 +1,8 @@
 package utils;
 
 import gameobjects.characters.Hero;
+import gameobjects.structures.Block;
+import gameobjects.structures.Wall;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,18 +23,11 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        int[][] matrix = GameMap.getMatrix();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                int x = j * GameSettings.BOARD_WIDTH / GameSettings.TILES_ROW;
-                int y = i * GameSettings.BOARD_HEIGHT / GameSettings.TILES_COLUMN;
-                if (matrix[i][j] == 0) {
-                    PositionedImage image = new PositionedImage("resources/img/gif/floor.gif", x, y);
-                    image.draw(graphics);
-                } else {
-                    PositionedImage image = new PositionedImage("resources/img/gif/wall.gif", x, y);
-                    image.draw(graphics);
-                }
+        Block[][] map = GameMap.getMap();
+
+        for (Block[] y : map) {
+            for (Block x : y) {
+                x.getPositionedImage().draw(graphics);
             }
         }
         HERO.getPositionedImage().draw(graphics);

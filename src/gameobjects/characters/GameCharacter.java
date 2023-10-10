@@ -17,7 +17,6 @@ public abstract class GameCharacter extends GameObject {
         this.currentHP = baseHP;
         this.defense = baseDefense;
         this.attack = baseAttack;
-
     }
 
     public int getCoordinateX() {
