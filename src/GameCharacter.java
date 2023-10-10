@@ -2,36 +2,45 @@ import java.util.Random;
 
 public abstract class GameCharacter {
 
-    private int maxHP;
-    private int currentHP;
-    private int defense;
-    private int attack;
-    protected int[] coordinates;
+    protected int maxHP;
+    protected int currentHP;
+    protected int defense;
+    protected int attack;
+
+    protected int coordinateX;
+    protected int coordinateY;
+
+    protected String imageAddress;
 
     public GameCharacter(int baseHP, int baseDefense, int baseAttack) {
+        this.maxHP = baseHP;
+        this.currentHP = baseHP;
+        this.defense = baseDefense;
+        this.attack = baseAttack;
 
     }
 
+    public int getCoordinateX() {
+        return coordinateX;
+    }
+
+    public void setCoordinateX(int coordinateX) {
+        this.coordinateX = coordinateX;
+    }
+
+    public int getCoordinateY() {
+        return coordinateY;
+    }
+
+    public void setCoordinateY(int coordinateY) {
+        this.coordinateY = coordinateY;
+    }
 
     public boolean isAlive() {
         return currentHP > 0;
     }
 
-    public void levelUpMaxHP() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
-        this.maxHP += d6;
-    }
-
-    public void levelUpDefense() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
-        this.defense += d6;
-    }
-
-    public void levelUpAttack() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
-        this.attack += d6;
+    public String getImageAddress() {
+        return imageAddress;
     }
 }
