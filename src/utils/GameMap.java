@@ -1,5 +1,7 @@
 package utils;
 
+import gameobjects.structures.Tile;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,9 +14,8 @@ import java.util.zip.DataFormatException;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class GameMap {
-
     private static int[][] matrix;
-
+    private static Tile[][] map;
 
     public void loadLevelMatrix() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
@@ -30,7 +31,6 @@ public class GameMap {
         if (!fileIsValid(fileLines)) {
             throw new DataFormatException("File data not valid");
         }
-
         int[][] levelMatrix = new int[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
         for (int i = 0; i < fileLines.size(); i++) {
             String[] values = fileLines.get(i).split("");
@@ -44,12 +44,10 @@ public class GameMap {
     private boolean fileIsValid(List<String> fileLines) {
         int rowLength = GameSettings.TILES_ROW;
         int colLength = GameSettings.TILES_COLUMN;
-
         // Check if amount of rows is correct
         if (fileLines.size() != colLength) {
             return false;
         }
-
         // Check if each row has required amount of elements
         for (int i = 0; i < fileLines.size(); i++) {
             String[] values = fileLines.get(i).split("");
@@ -65,6 +63,7 @@ public class GameMap {
         }
         return true;
     }
+
     public static int[][] getMatrix() {
         return matrix;
     }

@@ -1,8 +1,6 @@
-package characters;
+package gameobjects.characters;
 
 import utils.GameLogic;
-
-import java.util.Random;
 
 public class Boss extends Monster {
     public Boss(int level) {

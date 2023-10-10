@@ -1,8 +1,8 @@
 package utils;
 
-import characters.Boss;
-import characters.Monster;
-import characters.Skeleton;
+import gameobjects.characters.Boss;
+import gameobjects.characters.Monster;
+import gameobjects.characters.Skeleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,12 @@ import java.util.Random;
 
 public class GameLogic {
     private List<Monster> monsters;
-
     private static int currentLevel;
+
     public GameLogic() {
         this.monsters = new ArrayList<>();
         this.currentLevel = 1;
     }
-
 
     public void loadMonsters() {
         int monsterCount = diceRoll(3);

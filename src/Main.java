@@ -1,7 +1,6 @@
 import utils.Board;
 import utils.GameLogic;
 import utils.GameMap;
-
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;

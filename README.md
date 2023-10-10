@@ -157,9 +157,9 @@ components:
 
   - Character
 
-    - characters.Monster
+    - gameobjects.characters.Monster
 
-      - characters.Hero
+      - gameobjects.characters.Hero
 
       - types
 

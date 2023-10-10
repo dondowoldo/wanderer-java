@@ -153,9 +153,9 @@ Tervezd meg a felépítést. A felépítésben az alábbi elemeket gondold át:
 
   - Character
 
-    - characters.Monster
+    - gameobjects.characters.Monster
 
-    - characters.Hero
+    - gameobjects.characters.Hero
 
     - types
 

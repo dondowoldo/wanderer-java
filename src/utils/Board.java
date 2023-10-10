@@ -1,6 +1,6 @@
 package utils;
 
-import characters.Hero;
+import gameobjects.characters.Hero;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +11,8 @@ public class Board extends JComponent implements KeyListener {
 
     private final Hero HERO;
 
-
     public Board() {
         this.HERO = new Hero();
-
         // set the size of your draw board
         setPreferredSize(new Dimension(GameSettings.BOARD_WIDTH, GameSettings.BOARD_HEIGHT));
         setVisible(true);
@@ -23,7 +21,6 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-
         int[][] matrix = GameMap.getMatrix();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
@@ -44,7 +41,6 @@ public class Board extends JComponent implements KeyListener {
     // To be a KeyListener the class needs to have these 3 methods in it
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
