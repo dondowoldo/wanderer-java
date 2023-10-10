@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board extends JComponent implements KeyListener {
 
@@ -10,11 +12,12 @@ public class Board extends JComponent implements KeyListener {
     public static final int TILES_ROW = 10;
     public static final int TILES_COLUMN = 10;
     private final Hero HERO;
+    private List<Monster> monsters;
 
 
     public Board() {
         this.HERO = new Hero();
-
+        this.monsters = new ArrayList<>();
         // set the size of your draw board
         setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
         setVisible(true);
