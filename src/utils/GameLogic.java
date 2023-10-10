@@ -13,47 +13,45 @@ import java.util.Random;
 
 
 public class GameLogic {
-    public static List<Monster> MONSTERS;
+    private static final List<Monster> MONSTERS = new ArrayList<>();
 
-    public static Hero HERO;
+    private static final Hero HERO = new Hero();
+
 
     private static int currentLevel;
 
     public GameLogic() {
-        this.MONSTERS = new ArrayList<>();
-        this.HERO = new Hero();
         this.currentLevel = 1;
     }
 
-    public Hero getHERO() {
+    public static List<Monster> getMONSTERS() {
+        return MONSTERS;
+    }
+
+    public static Hero getHERO() {
         return HERO;
     }
 
-
-
-    public void loadMonsters() {
-        int monsterCount = diceRoll(3);
-        this.MONSTERS.add(new Boss(currentLevel));
-        for (int i = 0; i < monsterCount - 1; i++) {
-            MONSTERS.add(new Skeleton(currentLevel));
-        }
-    }
-
-    public void deployMonsters() {
+    public void placeMonsters() {
         List<Block> availableSpots = new ArrayList<>();
-        for (Block[] row : GameMap.getMap()) {
+        for (Block[] row : GameMap.getMAP()) {
             for (Block block : row) {
                 if (block instanceof Tile) {
                     availableSpots.add(block);
                 }
             }
         }
-        for (Monster m : MONSTERS) {
-            int position = new Random().nextInt(availableSpots.size()) + 1;
-            m.setCoordinateX(availableSpots.get(position).getCoordinateX());
-            m.setCoordinateY(availableSpots.get(position).getCoordinateY());
-            availableSpots.remove(position);
+        for (int i = 0; i < diceRoll(3); i++) {
+            int position = new Random().nextInt(availableSpots.size());
+            if (i == 0) {
+                MONSTERS.add(new Boss(currentLevel, availableSpots.get(position).getCoordinateX(), availableSpots.get(position).getCoordinateY()));
+                availableSpots.remove(position);
+            } else {
+                MONSTERS.add(new Skeleton(currentLevel, availableSpots.get(position).getCoordinateX(), availableSpots.get(position).getCoordinateY()));
+                availableSpots.remove(position);
+            }
         }
+        ;
     }
 
 

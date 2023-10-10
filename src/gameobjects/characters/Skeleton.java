@@ -5,12 +5,14 @@ import utils.GameLogic;
 public class Skeleton extends Monster {
     private boolean hasKey;
 
-    public Skeleton(int level) {
+    public Skeleton(int level, int initialCoordX, int initialCoordY) {
         super(
                 2 * level * GameLogic.diceRoll(1),
                 (level / 2) * GameLogic.diceRoll(1),
                 level * GameLogic.diceRoll(1)
         );
+        this.coordinateX = initialCoordX;
+        this.coordinateY = initialCoordY;
         this.imageAddress = "resources/img/gif/skeleton.gif";
     }
 }

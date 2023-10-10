@@ -4,8 +4,9 @@ import interfaces.Impenetrable;
 import utils.GameLogic;
 import utils.GameMap;
 
-public class Hero extends GameCharacter implements Impenetrable {
+public class Hero extends GameCharacter {
     private int movesCount;
+
     public Hero() {
         super(
                 20 + 3 * GameLogic.diceRoll(1),
@@ -16,6 +17,9 @@ public class Hero extends GameCharacter implements Impenetrable {
         this.coordinateY = 0;
         this.imageAddress = "resources/img/gif/hero-down.gif";
         this.movesCount = 0;
+    }
+    public int getMovesCount() {
+        return movesCount;
     }
 
     public void levelUpMaxHP() {
@@ -52,25 +56,25 @@ public class Hero extends GameCharacter implements Impenetrable {
     public void move(String direction) {
         switch (direction) {
             case "up":
-                if (this.coordinateY != 0 && !(GameMap.getMap()[this.coordinateY - 1][this.coordinateX] instanceof Impenetrable)) {
+                if (this.coordinateY != 0 && !(GameMap.getMAP()[this.coordinateY - 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY -= 1;
                     this.movesCount += 1;
                 }
                 break;
             case "down":
-                if (this.coordinateY != GameMap.getMap().length - 1 && !(GameMap.getMap()[this.coordinateY + 1][this.coordinateX] instanceof Impenetrable)) {
+                if (this.coordinateY != GameMap.getMAP().length - 1 && !(GameMap.getMAP()[this.coordinateY + 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY += 1;
                     this.movesCount += 1;
                 }
                 break;
             case "left":
-                if (this.coordinateX != 0 && !(GameMap.getMap()[this.coordinateY][this.coordinateX - 1] instanceof Impenetrable)) {
+                if (this.coordinateX != 0 && !(GameMap.getMAP()[this.coordinateY][this.coordinateX - 1] instanceof Impenetrable)) {
                     this.coordinateX -= 1;
                     this.movesCount += 1;
                 }
                 break;
             case "right":
-                if (this.coordinateX != GameMap.getMap()[this.coordinateY].length - 1 && !(GameMap.getMap()[this.coordinateY][this.coordinateX + 1] instanceof Impenetrable)) {
+                if (this.coordinateX != GameMap.getMAP()[this.coordinateY].length - 1 && !(GameMap.getMAP()[this.coordinateY][this.coordinateX + 1] instanceof Impenetrable)) {
                     this.coordinateX += 1;
                     this.movesCount += 1;
                     break;

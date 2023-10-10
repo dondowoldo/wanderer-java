@@ -17,8 +17,7 @@ public class Main {
         } catch (FileNotFoundException | DataFormatException e) {
             System.err.println(e.getMessage());
         }
-        gameLogic.loadMonsters();
-        gameLogic.deployMonsters();
+        gameLogic.placeMonsters();
         frame.add(board);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

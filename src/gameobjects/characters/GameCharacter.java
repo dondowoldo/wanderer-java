@@ -3,8 +3,9 @@ package gameobjects.characters;
 
 
 import gameobjects.GameObject;
+import interfaces.Impenetrable;
 
-public abstract class GameCharacter extends GameObject {
+public abstract class GameCharacter extends GameObject implements Impenetrable {
 
     protected int maxHP;
     protected int currentHP;
@@ -18,7 +19,6 @@ public abstract class GameCharacter extends GameObject {
         this.defense = baseDefense;
         this.attack = baseAttack;
     }
-
 
 
     public boolean isAlive() {

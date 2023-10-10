@@ -16,7 +16,7 @@ import java.util.zip.DataFormatException;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class GameMap {
-    private static Block[][] map;
+    private static final Block[][] MAP = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
 
     public void loadLevelMatrix() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
@@ -32,15 +32,15 @@ public class GameMap {
         if (!fileIsValid(fileLines)) {
             throw new DataFormatException("File data not valid");
         }
-        map = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
+//        map = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
 
         for (int i = 0; i < fileLines.size(); i++) {
             String[] values = fileLines.get(i).split("");
             for (int j = 0; j < values.length; j++) {
                 if (Integer.parseInt(values[j]) == 0) {
-                    map[i][j] = new Tile(j, i);
+                    MAP[i][j] = new Tile(j, i);
                 } else {
-                    map[i][j] = new Wall(j, i);
+                    MAP[i][j] = new Wall(j, i);
                 }
             }
         }
@@ -68,7 +68,7 @@ public class GameMap {
         return true;
     }
 
-    public static Block[][] getMap() {
-        return map;
+    public static Block[][] getMAP() {
+        return MAP;
     }
 }

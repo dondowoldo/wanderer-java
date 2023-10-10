@@ -8,9 +8,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static utils.GameLogic.HERO;
-import static utils.GameLogic.MONSTERS;
-
 public class Board extends JComponent implements KeyListener {
 
     public Board() {
@@ -21,16 +18,16 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        Block[][] map = GameMap.getMap();
+        Block[][] map = GameMap.getMAP();
         for (Block[] y : map) {
             for (Block x : y) {
                 x.getPositionedImage().draw(graphics);
             }
         }
-        for (Monster monster : MONSTERS) {
+        for (Monster monster : GameLogic.getMONSTERS()) {
             monster.getPositionedImage().draw(graphics);
         }
-        HERO.getPositionedImage().draw(graphics);
+        GameLogic.getHERO().getPositionedImage().draw(graphics);
     }
 
     // To be a KeyListener the class needs to have these 3 methods in it
@@ -41,13 +38,13 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            HERO.faceUp();
+            GameLogic.getHERO().faceUp();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            HERO.faceDown();
+            GameLogic.getHERO().faceDown();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            HERO.faceLeft();
+            GameLogic.getHERO().faceLeft();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            HERO.faceRight();
+            GameLogic.getHERO().faceRight();
         }
         repaint();
     }
@@ -57,13 +54,13 @@ public class Board extends JComponent implements KeyListener {
     public void keyReleased(KeyEvent e) {
         // When the up or down keys hit, we change the position of our box
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            HERO.move("up");
+            GameLogic.getHERO().move("up");
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            HERO.move("down");
+            GameLogic.getHERO().move("down");
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            HERO.move("left");
+            GameLogic.getHERO().move("left");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            HERO.move("right");
+            GameLogic.getHERO().move("right");
             // and redraw to have a new picture with the new coordinates
         }
         repaint();
