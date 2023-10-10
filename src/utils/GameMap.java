@@ -1,3 +1,5 @@
+package utils;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,27 +12,14 @@ import java.util.zip.DataFormatException;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class GameMap {
-    private int currentLevel;
 
     private static int[][] matrix;
 
-    public GameMap(int currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-
-    public GameMap() {
-        this.currentLevel = 1;
-    }
-
-    public static int[][] getMatrix() {
-        return matrix;
-    }
-
 
     public void loadLevelMatrix() throws FileNotFoundException, DataFormatException {
-        Path filePath = Paths.get("resources/levels/" + this.currentLevel + ".txt");
+        Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
         if (!Files.exists(filePath)) {
-            throw new FileNotFoundException("level " + this.currentLevel + " does not exist. Please try again");
+            throw new FileNotFoundException("level " + GameLogic.getCurrentLevel() + " does not exist. Please try again");
         }
         List<String> fileLines = new ArrayList<>();
         try {
@@ -42,7 +31,7 @@ public class GameMap {
             throw new DataFormatException("File data not valid");
         }
 
-        int[][] levelMatrix = new int[Board.TILES_COLUMN][Board.TILES_ROW];
+        int[][] levelMatrix = new int[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
         for (int i = 0; i < fileLines.size(); i++) {
             String[] values = fileLines.get(i).split("");
             for (int j = 0; j < values.length; j++) {
@@ -53,8 +42,8 @@ public class GameMap {
     }
 
     private boolean fileIsValid(List<String> fileLines) {
-        int rowLength = Board.TILES_ROW;
-        int colLength = Board.TILES_COLUMN;
+        int rowLength = GameSettings.TILES_ROW;
+        int colLength = GameSettings.TILES_COLUMN;
 
         // Check if amount of rows is correct
         if (fileLines.size() != colLength) {
@@ -75,5 +64,8 @@ public class GameMap {
             }
         }
         return true;
+    }
+    public static int[][] getMatrix() {
+        return matrix;
     }
 }

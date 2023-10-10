@@ -1,12 +1,16 @@
-import java.util.List;
+package characters;
+
 import java.util.Random;
+
+import utils.GameLogic;
+import utils.GameMap;
 
 public class Hero extends GameCharacter {
     public Hero() {
         super(
-                20 + 3 * new Random().nextInt(6) + 1,
-                2 * new Random().nextInt(6) + 1,
-                5 + new Random().nextInt(6) + 1
+                20 + 3 * GameLogic.diceRoll(1),
+                2 * GameLogic.diceRoll(1),
+                5 + GameLogic.diceRoll(1)
         );
         this.coordinateX = 0;
         this.coordinateY = 0;
@@ -14,20 +18,17 @@ public class Hero extends GameCharacter {
     }
 
     public void levelUpMaxHP() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
+        int d6 = GameLogic.diceRoll(1);
         this.maxHP += d6;
     }
 
     public void levelUpDefense() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
+        int d6 = GameLogic.diceRoll(1);
         this.defense += d6;
     }
 
     public void levelUpAttack() {
-        Random random = new Random();
-        int d6 = random.nextInt(6) + 1;
+        int d6 = GameLogic.diceRoll(1);
         this.attack += d6;
     }
 

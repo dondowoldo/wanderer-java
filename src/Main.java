@@ -1,6 +1,9 @@
+import utils.Board;
+import utils.GameLogic;
+import utils.GameMap;
+
 import javax.swing.*;
 import java.io.FileNotFoundException;
-import java.rmi.ServerError;
 import java.util.zip.DataFormatException;
 
 public class Main {
@@ -9,6 +12,8 @@ public class Main {
         JFrame frame = new JFrame("RPG Game");
         Board board = new Board();
         GameMap gameMap = new GameMap();
+        GameLogic logic = new GameLogic();
+
         try {
             gameMap.loadLevelMatrix();
         } catch (FileNotFoundException | DataFormatException e) {
@@ -23,6 +28,6 @@ public class Main {
         // with the system calling one of the below 3 methods
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
-        // because this Board class (the type of the board object) is also a KeyListener
+        // because this utils.Board class (the type of the board object) is also a KeyListener
     }
 }

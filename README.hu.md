@@ -16,7 +16,7 @@ a náluk relytőző kulcs megtalálásával, ami a következő szintre vezet.
 
 #### Hogyan indítsd el a programot
 
-- A játék indítása a `Board` class `main()` függvényével történik.
+- A játék indítása a `utils.Board` class `main()` függvényével történik.
 
 - Mikor a specifikációkat és a sztorikat olvasod tartsd ezt észben.
 
@@ -27,73 +27,77 @@ a náluk relytőző kulcs megtalálásával, ami a következő szintre vezet.
   - bármit szétszedhetsz, akárhogy
 
 ```java
+import utils.PositionedImage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JComponent implements KeyListener {
+public class utils.Board extends JComponent implements KeyListener {
 
-  int testBoxX;
-  int testBoxY;
+    int testBoxX;
+    int testBoxY;
 
-  public Board() {
-    testBoxX = 300;
-    testBoxY = 300;
+    public utils.Board() {
+        testBoxX = 300;
+        testBoxY = 300;
 
-    // beállítja a rajztábla méretét
-    setPreferredSize(new Dimension(720, 720));
-    setVisible(true);
-  }
-
-  @Override
-  public void paint(Graphics graphics) {
-    super.paint(graphics);
-    graphics.fillRect(testBoxX, testBoxY, 100, 100);
-    // Van egy 720 x 720-as rajztábla
-    // Az alábbi class-al készíthetsz és rajzolhatsz ki egy képet. pl.:
-    PositionedImage image = new PositionedImage("yourimage.png", 300, 300);
-    image.draw(graphics);
-  }
-
-  public static void main(String[] args) {
-    // Itt láthatod, hogy készíthetsz egy új ablakot, és hogyan adhatod hozzá a táblánkat (board). 
-    JFrame frame = new JFrame("RPG Game");
-    Board board = new Board();
-    frame.add(board);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
-    frame.pack();
-    // Itt láthatod, hogy adsz hozzá gomb esemény figyelőt (key event listener) 
-    // A board object értesítődik ha valamelyik gomb lenyomásra kerül
-    // és a rendszer meghívja az alábbi 3 függvény egyikét
-    frame.addKeyListener(board);
-    // Figyeld meg, (fent) hogy csak így tudjuk kivitelezni
-    // mivel a Board class (a board object típusa) is egy KeyListener
-  }
-  // Hogy legyen egy KeyListenerünk, a classnak erre a 3 függvényre van szüksége.
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-
-  }
-  // De valójában csak ezt a függvényt használjuk a projekt során
-  @Override
-  public void keyReleased(KeyEvent e) {
-    // Mikor megnyomódik a lefele vagy felfele gomb, a négyzetünk pozíciója változik
-    if (e.getKeyCode() == KeyEvent.VK_UP) {
-      testBoxY -= 100;
-    } else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-      testBoxY += 100;
+        // beállítja a rajztábla méretét
+        setPreferredSize(new Dimension(720, 720));
+        setVisible(true);
     }
-    // és újra rajzolódik az új koordinátákkal
-    repaint();
-  
-  }
+
+    @Override
+    public void paint(Graphics graphics) {
+        super.paint(graphics);
+        graphics.fillRect(testBoxX, testBoxY, 100, 100);
+        // Van egy 720 x 720-as rajztábla
+        // Az alábbi class-al készíthetsz és rajzolhatsz ki egy képet. pl.:
+        PositionedImage image = new PositionedImage("yourimage.png", 300, 300);
+        image.draw(graphics);
+    }
+
+    public static void main(String[] args) {
+        // Itt láthatod, hogy készíthetsz egy új ablakot, és hogyan adhatod hozzá a táblánkat (board). 
+        JFrame frame = new JFrame("RPG Game");
+        utils.Board board = new utils.Board();
+        frame.add(board);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.pack();
+        // Itt láthatod, hogy adsz hozzá gomb esemény figyelőt (key event listener) 
+        // A board object értesítődik ha valamelyik gomb lenyomásra kerül
+        // és a rendszer meghívja az alábbi 3 függvény egyikét
+        frame.addKeyListener(board);
+        // Figyeld meg, (fent) hogy csak így tudjuk kivitelezni
+        // mivel a utils.Board class (a board object típusa) is egy KeyListener
+    }
+
+    // Hogy legyen egy KeyListenerünk, a classnak erre a 3 függvényre van szüksége.
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    // De valójában csak ezt a függvényt használjuk a projekt során
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // Mikor megnyomódik a lefele vagy felfele gomb, a négyzetünk pozíciója változik
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            testBoxY -= 100;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            testBoxY += 100;
+        }
+        // és újra rajzolódik az új koordinátákkal
+        repaint();
+
+    }
 
 }
 
@@ -108,12 +112,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class PositionedImage {
+public class utils.PositionedImage {
 
   BufferedImage image;
   int posX, posY;
 
-  public PositionedImage(String filename, int posX, int posY) {
+  public utils.PositionedImage(String filename, int posX, int posY) {
     this.posX = posX;
     this.posY = posY;
     try {
@@ -149,9 +153,9 @@ Tervezd meg a felépítést. A felépítésben az alábbi elemeket gondold át:
 
   - Character
 
-    - Monster
+    - characters.Monster
 
-    - Hero
+    - characters.Hero
 
     - types
 

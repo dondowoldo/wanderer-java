@@ -1,25 +1,22 @@
+package utils;
+
+import characters.Hero;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Board extends JComponent implements KeyListener {
 
-    public static final int BOARD_WIDTH = 720;
-    public static final int BOARD_HEIGHT = 720;
-    public static final int TILES_ROW = 10;
-    public static final int TILES_COLUMN = 10;
     private final Hero HERO;
-    private List<Monster> monsters;
 
 
     public Board() {
         this.HERO = new Hero();
-        this.monsters = new ArrayList<>();
+
         // set the size of your draw board
-        setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
+        setPreferredSize(new Dimension(GameSettings.BOARD_WIDTH, GameSettings.BOARD_HEIGHT));
         setVisible(true);
     }
 
@@ -30,8 +27,8 @@ public class Board extends JComponent implements KeyListener {
         int[][] matrix = GameMap.getMatrix();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                int x = j * BOARD_WIDTH / TILES_ROW;
-                int y = i * BOARD_HEIGHT / TILES_COLUMN;
+                int x = j * GameSettings.BOARD_WIDTH / GameSettings.TILES_ROW;
+                int y = i * GameSettings.BOARD_HEIGHT / GameSettings.TILES_COLUMN;
                 if (matrix[i][j] == 0) {
                     PositionedImage image = new PositionedImage("resources/img/gif/floor.gif", x, y);
                     image.draw(graphics);
@@ -43,7 +40,6 @@ public class Board extends JComponent implements KeyListener {
         }
         HERO.getPositionedImage().draw(graphics);
     }
-
 
     // To be a KeyListener the class needs to have these 3 methods in it
     @Override

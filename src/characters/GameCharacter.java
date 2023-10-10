@@ -1,4 +1,8 @@
-import java.util.Random;
+package characters;
+import interfaces.Drawable;
+//import utils.PositionedImage;
+import utils.GameSettings;
+import utils.PositionedImage;
 
 public abstract class GameCharacter implements Drawable {
 
@@ -46,7 +50,7 @@ public abstract class GameCharacter implements Drawable {
     @Override
     public PositionedImage getPositionedImage() {
         return new PositionedImage(this.imageAddress,
-                this.coordinateX * Board.BOARD_WIDTH / Board.TILES_ROW,
-                this.coordinateY * Board.BOARD_HEIGHT / Board.TILES_COLUMN);
+                this.coordinateX * GameSettings.BOARD_WIDTH / GameSettings.TILES_ROW,
+                this.coordinateY * GameSettings.BOARD_HEIGHT / GameSettings.TILES_COLUMN);
     }
 }
