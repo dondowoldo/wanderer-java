@@ -70,13 +70,13 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // When the up or down keys hit, we change the position of our box
-        if (e.getKeyCode() == KeyEvent.VK_UP && GameMap.getMatrix()[HERO.getCoordinateY() - 1][HERO.getCoordinateX()] != 1) {
+        if (e.getKeyCode() == KeyEvent.VK_UP && HERO.getCoordinateY() != 0 && GameMap.getMatrix()[HERO.getCoordinateY() - 1][HERO.getCoordinateX()] != 1) {
             HERO.setCoordinateY(HERO.getCoordinateY() - 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN && GameMap.getMatrix()[HERO.getCoordinateY() + 1][HERO.getCoordinateX()] != 1) {
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN && HERO.getCoordinateY() != GameMap.getMatrix().length - 1 && GameMap.getMatrix()[HERO.getCoordinateY() + 1][HERO.getCoordinateX()] != 1) {
             HERO.setCoordinateY(HERO.getCoordinateY() + 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT && GameMap.getMatrix()[HERO.getCoordinateY()][HERO.getCoordinateX() - 1] != 1) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT && HERO.getCoordinateX() != 0 && HERO.getCoordinateX() != 0 && GameMap.getMatrix()[HERO.getCoordinateY()][HERO.getCoordinateX() - 1] != 1) {
             HERO.setCoordinateX(HERO.getCoordinateX() - 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && GameMap.getMatrix()[HERO.getCoordinateY()][HERO.getCoordinateX() + 1] != 1) {
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && HERO.getCoordinateX() != GameMap.getMatrix()[HERO.getCoordinateY()].length - 1 && GameMap.getMatrix()[HERO.getCoordinateY()][HERO.getCoordinateX() + 1] != 1) {
             HERO.setCoordinateX(HERO.getCoordinateX() + 1);
         }
         // and redraw to have a new picture with the new coordinates
