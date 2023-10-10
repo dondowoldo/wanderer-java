@@ -36,11 +36,11 @@ public abstract class GameCharacter {
         this.coordinateY = coordinateY;
     }
 
-    public boolean isAlive() {
-        return currentHP > 0;
-    }
-
     public String getImageAddress() {
         return imageAddress;
+    }
+
+    public boolean isAlive() {
+        return currentHP > 0;
     }
 }
