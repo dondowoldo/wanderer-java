@@ -13,5 +13,6 @@ public abstract class GameObject implements Drawable {
         return new PositionedImage(this.imageAddress,
                 this.coordinateX * GameSettings.BOARD_WIDTH / GameSettings.TILES_ROW,
                 this.coordinateY * GameSettings.BOARD_HEIGHT / GameSettings.TILES_COLUMN);
+        //test
     }
 }
