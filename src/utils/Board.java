@@ -1,21 +1,19 @@
 package utils;
 
-import gameobjects.characters.Hero;
+import gameobjects.characters.Monster;
 import gameobjects.structures.Block;
-import gameobjects.structures.Wall;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static utils.GameLogic.HERO;
+import static utils.GameLogic.MONSTERS;
+
 public class Board extends JComponent implements KeyListener {
 
-    private final Hero HERO;
-
     public Board() {
-        this.HERO = new Hero();
-        // set the size of your draw board
         setPreferredSize(new Dimension(GameSettings.BOARD_WIDTH, GameSettings.BOARD_HEIGHT));
         setVisible(true);
     }
@@ -24,11 +22,13 @@ public class Board extends JComponent implements KeyListener {
     public void paint(Graphics graphics) {
         super.paint(graphics);
         Block[][] map = GameMap.getMap();
-
         for (Block[] y : map) {
             for (Block x : y) {
                 x.getPositionedImage().draw(graphics);
             }
+        }
+        for (Monster monster : MONSTERS) {
+            monster.getPositionedImage().draw(graphics);
         }
         HERO.getPositionedImage().draw(graphics);
     }

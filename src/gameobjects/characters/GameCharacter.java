@@ -19,25 +19,7 @@ public abstract class GameCharacter extends GameObject {
         this.attack = baseAttack;
     }
 
-    public int getCoordinateX() {
-        return coordinateX;
-    }
 
-    public void setCoordinateX(int coordinateX) {
-        this.coordinateX = coordinateX;
-    }
-
-    public int getCoordinateY() {
-        return coordinateY;
-    }
-
-    public void setCoordinateY(int coordinateY) {
-        this.coordinateY = coordinateY;
-    }
-
-    public String getImageAddress() {
-        return imageAddress;
-    }
 
     public boolean isAlive() {
         return currentHP > 0;

@@ -11,13 +11,14 @@ public class Main {
         JFrame frame = new JFrame("RPG Game");
         Board board = new Board();
         GameMap gameMap = new GameMap();
-        GameLogic logic = new GameLogic();
-
+        GameLogic gameLogic = new GameLogic();
         try {
             gameMap.loadLevelMatrix();
         } catch (FileNotFoundException | DataFormatException e) {
             System.err.println(e.getMessage());
         }
+        gameLogic.loadMonsters();
+        gameLogic.deployMonsters();
         frame.add(board);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

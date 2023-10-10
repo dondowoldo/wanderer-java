@@ -1,6 +1,7 @@
 package utils;
 
 import gameobjects.characters.Boss;
+import gameobjects.characters.Hero;
 import gameobjects.characters.Monster;
 import gameobjects.characters.Skeleton;
 import gameobjects.structures.Block;
@@ -12,19 +13,29 @@ import java.util.Random;
 
 
 public class GameLogic {
-    private List<Monster> monsters;
+    public static List<Monster> MONSTERS;
+
+    public static Hero HERO;
+
     private static int currentLevel;
 
     public GameLogic() {
-        this.monsters = new ArrayList<>();
+        this.MONSTERS = new ArrayList<>();
+        this.HERO = new Hero();
         this.currentLevel = 1;
     }
 
+    public Hero getHERO() {
+        return HERO;
+    }
+
+
+
     public void loadMonsters() {
         int monsterCount = diceRoll(3);
-        this.monsters.add(new Boss(currentLevel));
+        this.MONSTERS.add(new Boss(currentLevel));
         for (int i = 0; i < monsterCount - 1; i++) {
-            monsters.add(new Skeleton(currentLevel));
+            MONSTERS.add(new Skeleton(currentLevel));
         }
     }
 
@@ -37,12 +48,14 @@ public class GameLogic {
                 }
             }
         }
-
-        for (Monster m : monsters) {
-            // TODO SET MONSTERS IN POSITIONS
-            //  m.setCoordinateX();
+        for (Monster m : MONSTERS) {
+            int position = new Random().nextInt(availableSpots.size()) + 1;
+            m.setCoordinateX(availableSpots.get(position).getCoordinateX());
+            m.setCoordinateY(availableSpots.get(position).getCoordinateY());
+            availableSpots.remove(position);
         }
     }
+
 
     public static int diceRoll(int lowerBound) throws IllegalArgumentException {
         if (lowerBound < 1 || lowerBound > 3) {
