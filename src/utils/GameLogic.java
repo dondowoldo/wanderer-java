@@ -3,10 +3,13 @@ package utils;
 import gameobjects.characters.Boss;
 import gameobjects.characters.Monster;
 import gameobjects.characters.Skeleton;
+import gameobjects.structures.Block;
+import gameobjects.structures.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 public class GameLogic {
     private List<Monster> monsters;
@@ -26,8 +29,18 @@ public class GameLogic {
     }
 
     public void deployMonsters() {
+        List<Block> availableSpots = new ArrayList<>();
+        for (Block[] row : GameMap.getMap()) {
+            for (Block block : row) {
+                if (block instanceof Tile) {
+                    availableSpots.add(block);
+                }
+            }
+        }
+
         for (Monster m : monsters) {
-            // SET STARTING COORDINATES FOR EACH MONSTER
+            // TODO SET MONSTERS IN POSITIONS
+            //  m.setCoordinateX();
         }
     }
 

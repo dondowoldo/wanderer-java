@@ -4,7 +4,7 @@ import interfaces.Impenetrable;
 import utils.GameLogic;
 import utils.GameMap;
 
-public class Hero extends GameCharacter {
+public class Hero extends GameCharacter implements Impenetrable {
     private int movesCount;
     public Hero() {
         super(

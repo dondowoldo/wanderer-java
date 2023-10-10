@@ -60,7 +60,6 @@ public class GameMap {
                 return false;
             }
             for (int j = 0; j < values.length; j++) {
-                int test = Integer.parseInt(values[j]);
                 if (Integer.parseInt(values[j]) != 0 && Integer.parseInt(values[j]) != 1) {
                     return false;
                 }
