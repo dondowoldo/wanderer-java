@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Board extends JComponent implements KeyListener {
 
-    private final int BOARD_WIDTH = 720;
-    private final int BOARD_HEIGHT = 720;
+    public static final int BOARD_WIDTH = 720;
+    public static final int BOARD_HEIGHT = 720;
     public static final int TILES_ROW = 10;
     public static final int TILES_COLUMN = 10;
     private final Hero HERO;
@@ -41,11 +41,7 @@ public class Board extends JComponent implements KeyListener {
                 }
             }
         }
-        PositionedImage heroImage = new PositionedImage(HERO.getImageAddress(),
-                HERO.getCoordinateX() * BOARD_WIDTH / TILES_ROW,
-                HERO.getCoordinateY() * BOARD_HEIGHT / TILES_COLUMN
-        );
-        heroImage.draw(graphics);
+        HERO.getPositionedImage().draw(graphics);
     }
 
 

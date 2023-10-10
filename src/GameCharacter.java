@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class GameCharacter {
+public abstract class GameCharacter implements Drawable {
 
     protected int maxHP;
     protected int currentHP;
@@ -42,5 +42,11 @@ public abstract class GameCharacter {
 
     public boolean isAlive() {
         return currentHP > 0;
+    }
+    @Override
+    public PositionedImage getPositionedImage() {
+        return new PositionedImage(this.imageAddress,
+                this.coordinateX * Board.BOARD_WIDTH / Board.TILES_ROW,
+                this.coordinateY * Board.BOARD_HEIGHT / Board.TILES_COLUMN);
     }
 }
