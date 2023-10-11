@@ -18,7 +18,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class GameMap {
     private static final Block[][] MAP = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
 
-    public void loadLevelMatrix() throws FileNotFoundException, DataFormatException {
+    public void loadLevelMap() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
         if (!Files.exists(filePath)) {
             throw new FileNotFoundException("level " + GameLogic.getCurrentLevel() + " does not exist. Please try again");
@@ -32,15 +32,14 @@ public class GameMap {
         if (!fileIsValid(fileLines)) {
             throw new DataFormatException("File data not valid");
         }
-//        map = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
 
-        for (int i = 0; i < fileLines.size(); i++) {
-            String[] values = fileLines.get(i).split("");
-            for (int j = 0; j < values.length; j++) {
-                if (Integer.parseInt(values[j]) == 0) {
-                    MAP[i][j] = new Tile(j, i);
+        for (int y = 0; y < fileLines.size(); y++) {
+            String[] values = fileLines.get(y).split("");
+            for (int x = 0; x < values.length; x++) {
+                if (Integer.parseInt(values[x]) == 0) {
+                    MAP[y][x] = new Tile(x, y);
                 } else {
-                    MAP[i][j] = new Wall(j, i);
+                    MAP[y][x] = new Wall(x, y);
                 }
             }
         }

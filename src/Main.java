@@ -13,7 +13,7 @@ public class Main {
         GameMap gameMap = new GameMap();
         GameLogic gameLogic = new GameLogic();
         try {
-            gameMap.loadLevelMatrix();
+            gameMap.loadLevelMap();
         } catch (FileNotFoundException | DataFormatException e) {
             System.err.println(e.getMessage());
         }

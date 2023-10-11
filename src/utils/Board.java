@@ -63,6 +63,11 @@ public class Board extends JComponent implements KeyListener {
             GameLogic.getHERO().move("right");
             // and redraw to have a new picture with the new coordinates
         }
+        if (GameLogic.getHERO().getMovesCount() % 2 == 0) {
+            for (Monster monster : GameLogic.getMONSTERS()) {
+                monster.move();
+            }
+        }
         repaint();
     }
 }

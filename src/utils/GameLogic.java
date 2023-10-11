@@ -32,6 +32,14 @@ public class GameLogic {
         return HERO;
     }
 
+    public static Monster[][] getMonstersPositions() {
+        Monster[][] matrixMonsters = new Monster[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
+        for (Monster monster : MONSTERS) {
+            matrixMonsters[monster.getCoordinateY()][monster.getCoordinateX()] = monster;
+        }
+        return matrixMonsters;
+    }
+
     public void placeMonsters() {
         List<Block> availableSpots = new ArrayList<>();
         for (Block[] row : GameMap.getMAP()) {
@@ -51,7 +59,6 @@ public class GameLogic {
                 availableSpots.remove(position);
             }
         }
-        ;
     }
 
 
