@@ -36,7 +36,7 @@ public abstract class Monster extends GameCharacter {
             return;
         }
         if (possibleDirections.size() <= 2) {
-            switch (lastMoveDirection) {
+            switch (this.lastMoveDirection) {
                 case "up":
                     if (canMoveUp()) {
                         this.moveUp();
@@ -63,6 +63,17 @@ public abstract class Monster extends GameCharacter {
                     break;
                 default:
                     break;
+            }
+        }
+        if (possibleDirections.size() > 1) {
+            if (this.lastMoveDirection.equals("up")) {
+                possibleDirections.remove("down");
+            } else if (this.lastMoveDirection.equals("down")) {
+                possibleDirections.remove("up");
+            } else if (this.lastMoveDirection.equals("left")) {
+                possibleDirections.remove("right");
+            } else if (this.lastMoveDirection.equals("right")) {
+                possibleDirections.remove("left");
             }
         }
         int pickRandom = new Random().nextInt(possibleDirections.size());
