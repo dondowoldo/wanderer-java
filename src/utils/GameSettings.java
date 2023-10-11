@@ -7,4 +7,5 @@ public class GameSettings {
     public static final int TILES_COLUMN = 10;
 
     public static final int MONSTERS_COUNT = 20;
+    public static final int MONSTERS_SPEED = 300;
 }

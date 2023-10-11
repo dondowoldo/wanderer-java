@@ -5,10 +5,12 @@ import gameobjects.structures.Block;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JComponent implements KeyListener {
+public class Board extends JComponent implements KeyListener, ActionListener {
 
     public Board() {
         setPreferredSize(new Dimension(GameSettings.BOARD_WIDTH, GameSettings.BOARD_HEIGHT));
@@ -70,10 +72,18 @@ public class Board extends JComponent implements KeyListener {
             heroMoved = GameLogic.getHERO().move("right");
             // and redraw to have a new picture with the new coordinates
         }
-        if (heroMoved && GameLogic.getHERO().getMovesCount() % 2 == 0) {
-            for (Monster monster : GameLogic.getMONSTERS()) {
-                monster.move();
-            }
+//        if (heroMoved && GameLogic.getHERO().getMovesCount() % 2 == 0) {
+//            for (Monster monster : GameLogic.getMONSTERS()) {
+//                monster.move();
+//            }
+//        }
+        repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (Monster monster : GameLogic.getMONSTERS()) {
+            monster.move();
         }
         repaint();
     }

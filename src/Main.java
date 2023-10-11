@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
 
+import static utils.GameSettings.MONSTERS_SPEED;
+
 public class Main {
     public static void main(String[] args) {
         // Here is how you set up a new window and adding our board to it
@@ -12,6 +14,7 @@ public class Main {
         Board board = new Board();
         GameMap gameMap = new GameMap();
         GameLogic gameLogic = new GameLogic();
+        Timer timer = new Timer(MONSTERS_SPEED, board);
         try {
             gameMap.loadLevelMap();
         } catch (FileNotFoundException | DataFormatException e) {
@@ -26,6 +29,7 @@ public class Main {
         // The board object will be notified when hitting any key
         // with the system calling one of the below 3 methods
         frame.addKeyListener(board);
+        timer.start();
         // Notice (at the top) that we can only do this
         // because this utils.Board class (the type of the board object) is also a KeyListener
     }
