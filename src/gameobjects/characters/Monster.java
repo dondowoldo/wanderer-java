@@ -13,7 +13,26 @@ public abstract class Monster extends GameCharacter {
 
     }
     public void move() {
-        this.moveUp();
+        boolean monsterMoved = false;
+        do {
+            switch (GameLogic.diceRoll(2)) {
+                case 2:
+                    monsterMoved = true;
+                    break;
+                case 3:
+                    monsterMoved = this.moveUp();
+                    break;
+                case 4:
+                    monsterMoved = this.moveDown();
+                    break;
+                case 5:
+                    monsterMoved = this.moveLeft();
+                    break;
+                case 6:
+                    monsterMoved = this.moveRight();
+                    break;
+            }
+        } while (!monsterMoved);
     }
     public boolean moveUp() {
         if (this.coordinateY != 0 &&
