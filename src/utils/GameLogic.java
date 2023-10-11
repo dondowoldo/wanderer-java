@@ -49,7 +49,7 @@ public class GameLogic {
                 }
             }
         }
-        for (int i = 0; i < diceRoll(3); i++) {
+        for (int i = 0; i < GameLogic.diceRoll(3); i++) {
             int position = new Random().nextInt(availableSpots.size());
             if (i == 0) {
                 MONSTERS.add(new Boss(currentLevel, availableSpots.get(position).getCoordinateX(), availableSpots.get(position).getCoordinateY()));
