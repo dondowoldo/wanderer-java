@@ -1,6 +1,4 @@
 package gameobjects.characters;
-//import utils.PositionedImage;
-
 
 import gameobjects.GameObject;
 import interfaces.Impenetrable;

@@ -20,17 +20,9 @@ public abstract class GameObject implements Drawable {
         return coordinateX;
     }
 
-//    public void setCoordinateX(int coordinateX) {
-//        this.coordinateX = coordinateX;
-//    }
-
     public int getCoordinateY() {
         return coordinateY;
     }
-
-//    public void setCoordinateY(int coordinateY) {
-//        this.coordinateY = coordinateY;
-//    }
 
     public String getImageAddress() {
         return imageAddress;

@@ -1,7 +1,6 @@
 package gameobjects.characters;
 
 
-import gameobjects.GameObject;
 import interfaces.Impenetrable;
 import utils.GameLogic;
 import utils.GameMap;
@@ -12,6 +11,8 @@ import java.util.Random;
 
 
 public abstract class Monster extends GameCharacter {
+    private String lastMoveDirection = "none";
+
     public Monster(int baseHP, int baseDefense, int baseAttack) {
         super(baseHP, baseDefense, baseAttack);
 
@@ -34,7 +35,38 @@ public abstract class Monster extends GameCharacter {
         if (possibleDirections.isEmpty()) {
             return;
         }
+        if (possibleDirections.size() <= 2) {
+            switch (lastMoveDirection) {
+                case "up":
+                    if (canMoveUp()) {
+                        this.moveUp();
+                        return;
+                    }
+                    break;
+                case "down":
+                    if (canMoveDown()) {
+                        this.moveDown();
+                        return;
+                    }
+                    break;
+                case "left":
+                    if (canMoveLeft()) {
+                        this.moveLeft();
+                        return;
+                    }
+                    break;
+                case "right":
+                    if (canMoveRight()) {
+                        this.moveRight();
+                        return;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         int pickRandom = new Random().nextInt(possibleDirections.size());
+        this.lastMoveDirection = possibleDirections.get(pickRandom);
         switch (possibleDirections.get(pickRandom)) {
             case "up":
                 this.moveUp();
