@@ -18,6 +18,7 @@ public class Hero extends GameCharacter {
         this.imageAddress = "resources/img/gif/hero-down.gif";
         this.movesCount = 0;
     }
+
     public int getMovesCount() {
         return movesCount;
     }
@@ -53,32 +54,41 @@ public class Hero extends GameCharacter {
         this.imageAddress = "resources/img/gif/hero-down.gif";
     }
 
-    public void move(String direction) {
+    public boolean move(String direction) {
         switch (direction) {
             case "up":
-                if (this.coordinateY != 0 && !(GameMap.getMAP()[this.coordinateY - 1][this.coordinateX] instanceof Impenetrable)) {
+                if (this.coordinateY != 0 &&
+                        !(GameMap.getMAP()[this.coordinateY - 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY -= 1;
                     this.movesCount += 1;
+                    return true;
                 }
                 break;
             case "down":
-                if (this.coordinateY != GameMap.getMAP().length - 1 && !(GameMap.getMAP()[this.coordinateY + 1][this.coordinateX] instanceof Impenetrable)) {
+                if (this.coordinateY != GameMap.getMAP().length - 1 &&
+                        !(GameMap.getMAP()[this.coordinateY + 1][this.coordinateX] instanceof Impenetrable)) {
                     this.coordinateY += 1;
                     this.movesCount += 1;
+                    return true;
                 }
                 break;
             case "left":
-                if (this.coordinateX != 0 && !(GameMap.getMAP()[this.coordinateY][this.coordinateX - 1] instanceof Impenetrable)) {
+                if (this.coordinateX != 0 &&
+                        !(GameMap.getMAP()[this.coordinateY][this.coordinateX - 1] instanceof Impenetrable)) {
                     this.coordinateX -= 1;
                     this.movesCount += 1;
+                    return true;
                 }
                 break;
             case "right":
-                if (this.coordinateX != GameMap.getMAP()[this.coordinateY].length - 1 && !(GameMap.getMAP()[this.coordinateY][this.coordinateX + 1] instanceof Impenetrable)) {
+                if (this.coordinateX != GameMap.getMAP()[this.coordinateY].length - 1 &&
+                        !(GameMap.getMAP()[this.coordinateY][this.coordinateX + 1] instanceof Impenetrable)) {
                     this.coordinateX += 1;
                     this.movesCount += 1;
-                    break;
+                    return true;
                 }
+                break;
         }
+        return false;
     }
 }

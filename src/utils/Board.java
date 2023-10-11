@@ -18,12 +18,18 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        Block[][] map = GameMap.getMAP();
-        for (Block[] y : map) {
+        for (Block[] y : GameMap.getMAP()) {
             for (Block x : y) {
                 x.getPositionedImage().draw(graphics);
             }
         }
+//        for (Monster[] y : GameLogic.getMonstersPositions()) {
+//            for (Monster x : y) {
+//                if (x != null) {
+//                    x.getPositionedImage().draw(graphics);
+//                }
+//            }
+//        }
         for (Monster monster : GameLogic.getMONSTERS()) {
             monster.getPositionedImage().draw(graphics);
         }
@@ -53,17 +59,18 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // When the up or down keys hit, we change the position of our box
+        boolean heroMoved = false;
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            GameLogic.getHERO().move("up");
+            heroMoved = GameLogic.getHERO().move("up");
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            GameLogic.getHERO().move("down");
+            heroMoved = GameLogic.getHERO().move("down");
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            GameLogic.getHERO().move("left");
+            heroMoved = GameLogic.getHERO().move("left");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            GameLogic.getHERO().move("right");
+            heroMoved = GameLogic.getHERO().move("right");
             // and redraw to have a new picture with the new coordinates
         }
-        if (GameLogic.getHERO().getMovesCount() % 2 == 0) {
+        if (heroMoved && GameLogic.getHERO().getMovesCount() % 2 == 0) {
             for (Monster monster : GameLogic.getMONSTERS()) {
                 monster.move();
             }
