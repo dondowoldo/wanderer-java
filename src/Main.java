@@ -33,6 +33,6 @@ public class Main {
         frame.setVisible(true);
         frame.addKeyListener(board);
         frame.addKeyListener(statusBar);
-        timer.start();
+//        timer.start();
     }
 }

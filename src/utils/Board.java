@@ -72,19 +72,19 @@ public class Board extends JComponent implements KeyListener, ActionListener {
             heroMoved = GameLogic.getHERO().move("right");
             // and redraw to have a new picture with the new coordinates
         }
-//        if (heroMoved && GameLogic.getHERO().getMovesCount() % 2 == 0) {
-//            for (Monster monster : GameLogic.getMONSTERS()) {
-//                monster.move();
-//            }
-//        }
+        if (heroMoved && GameLogic.getHERO().getMovesCount() % 2 == 0) {
+            for (Monster monster : GameLogic.getMONSTERS()) {
+                monster.move();
+            }
+        }
         repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Monster monster : GameLogic.getMONSTERS()) {
-            monster.move();
-        }
-        repaint();
+//        for (Monster monster : GameLogic.getMONSTERS()) {
+//            monster.move();
+//        }
+//        repaint();
     }
 }
