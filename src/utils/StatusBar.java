@@ -2,12 +2,14 @@ package utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import static utils.GameSettings.*;
 
-public class StatusBar extends JComponent implements KeyListener {
+public class StatusBar extends JPanel implements KeyListener {
     private JLabel label;
 
     public StatusBar() {
@@ -20,17 +22,21 @@ public class StatusBar extends JComponent implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void paint(Graphics graphics) {
+        label.setText(GameLogic.getHERO().toString());
+        super.paint(graphics);
+    }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        repaint();
     }
 }

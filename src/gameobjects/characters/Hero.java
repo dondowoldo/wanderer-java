@@ -40,7 +40,7 @@ public class Hero extends GameCharacter implements Impenetrable {
     }
     @Override
     public String toString() {
-        return "Hero (Level " + level + ") HP: " + currentHP + "/" + maxHP + " | DP: " + defense + " | SP: " + attack;
+        return "Hero (Level " + level + ") HP: " + currentHP + "/" + maxHP + " | DP: " + defense + " | SP: " + attack + " | Moves: " + movesCount;
     }
 
     public void faceLeft() {
