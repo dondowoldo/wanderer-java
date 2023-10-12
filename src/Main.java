@@ -1,6 +1,8 @@
 import utils.Board;
 import utils.GameLogic;
 import utils.GameMap;
+import utils.StatusBar;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
@@ -14,6 +16,7 @@ public class Main {
         // Here is how you set up a new window and adding our board to it
         JFrame frame = new JFrame("RPG Game");
         Board board = new Board();
+        StatusBar statusBar = new StatusBar();
         GameMap gameMap = new GameMap();
         GameLogic gameLogic = new GameLogic();
         Timer timer = new Timer(MONSTERS_SPEED, board);
@@ -26,16 +29,15 @@ public class Main {
         frame.add(board, BorderLayout.NORTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel statusPanel = new JPanel();
-        statusPanel.setBackground(Color.white);
-        statusPanel.setPreferredSize(new Dimension(frame.getWidth(), STATUS_BAR_HEIGHT));
+//        JPanel statusPanel = new JPanel();
+//        statusPanel.setBackground(Color.white);
+//        statusPanel.setPreferredSize(new Dimension(frame.getWidth(), STATUS_BAR_HEIGHT));
+//        JLabel statusLabel = new JLabel(GameLogic.getHERO().toString());
+//        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//        statusLabel.setFont(new Font("Serif", Font.BOLD, FONT_SIZE));
+//        statusPanel.add(statusLabel);
 
-        JLabel statusLabel = new JLabel(GameLogic.getHERO().toString());
-        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        statusLabel.setFont(new Font("Serif", Font.BOLD, FONT_SIZE));
-        statusPanel.add(statusLabel);
-
-        frame.add(statusPanel, BorderLayout.SOUTH);
+        frame.add(statusBar, BorderLayout.SOUTH);
         frame.pack();
 
 
