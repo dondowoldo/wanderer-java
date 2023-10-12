@@ -4,6 +4,7 @@ import gameobjects.structures.Block;
 import gameobjects.structures.Tile;
 import gameobjects.structures.Wall;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.DataFormatException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -18,7 +20,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class GameMap {
     private static final Block[][] MAP = new Block[GameSettings.TILES_COLUMN][GameSettings.TILES_ROW];
 
-    public void loadLevelMap() throws FileNotFoundException, DataFormatException {
+    private static final int NUMBER_OF_LEVELS = Objects.requireNonNull(new File(String.valueOf(Paths.get("resources/levels/"))).listFiles()).length;
+
+    public static void loadLevelMap() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
         if (!Files.exists(filePath)) {
             throw new FileNotFoundException("level " + GameLogic.getCurrentLevel() + " does not exist. Please try again");
@@ -45,7 +49,7 @@ public class GameMap {
         }
     }
 
-    private boolean fileIsValid(List<String> fileLines) {
+    private static boolean fileIsValid(List<String> fileLines) {
         int rowLength = GameSettings.TILES_ROW;
         int colLength = GameSettings.TILES_COLUMN;
         // Check if amount of rows is correct
@@ -69,5 +73,9 @@ public class GameMap {
 
     public static Block[][] getMAP() {
         return MAP;
+    }
+
+    public static int getNUMBER_OF_LEVELS() {
+        return NUMBER_OF_LEVELS;
     }
 }

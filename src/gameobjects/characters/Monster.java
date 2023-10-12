@@ -15,7 +15,6 @@ public abstract class Monster extends GameCharacter {
 
     public Monster(int baseHP, int baseDefense, int baseAttack) {
         super(baseHP, baseDefense, baseAttack);
-
     }
 
     public void move() {
@@ -150,5 +149,16 @@ public abstract class Monster extends GameCharacter {
 
     private void moveRight() {
         this.coordinateX += 1;
+    }
+
+    public void strike(Hero hero) {
+        int strikeValue = this.attack + GameLogic.diceRoll(1) * 2;
+        hero.beStriked(strikeValue);
+    }
+
+    protected void beStriked(int damage) {
+        if (damage > this.defense) {
+            this.currentHP = this.currentHP - (damage - this.defense);
+        }
     }
 }

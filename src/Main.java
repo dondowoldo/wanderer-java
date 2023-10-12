@@ -4,7 +4,6 @@ import utils.GameMap;
 import utils.StatusBar;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
@@ -15,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         // Here is how you set up a new window and adding our board to it
         JFrame frame = new JFrame("RPG Game");
-        Board board = new Board();
+        Board board = new Board(frame);
         GameMap gameMap = new GameMap();
         GameLogic gameLogic = new GameLogic();
         StatusBar statusBar = new StatusBar();

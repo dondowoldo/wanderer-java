@@ -4,9 +4,14 @@ import interfaces.Impenetrable;
 import utils.GameLogic;
 import utils.GameMap;
 
+import java.util.Random;
+
 public class Hero extends GameCharacter implements Impenetrable {
     private int movesCount;
     private int level;
+
+    private boolean hasKey;
+
     public Hero() {
         super(
                 20 + 3 * GameLogic.diceRoll(1),
@@ -18,29 +23,70 @@ public class Hero extends GameCharacter implements Impenetrable {
         this.imageAddress = "resources/img/gif/hero-down.gif";
         this.movesCount = 0;
         this.level = 1;
+        this.hasKey = false;
+    }
+
+    public void obtainKey() {
+        this.hasKey = true;
+    }
+
+    public void resetCoordinates() {
+        this.coordinateX = 0;
+        this.coordinateY = 0;
+        this.hasKey = false;
+    }
+
+    public boolean hasKey() {
+        return hasKey;
     }
 
     public int getMovesCount() {
         return movesCount;
     }
 
-    public void levelUpMaxHP() {
+    public void nextLevel() {
+        Random random = new Random();
+        int chance = random.nextInt(10) + 1;
+        if (chance <= 5) {
+            this.currentHP += this.maxHP / 10;
+        } else if (chance <= 9) {
+            this.currentHP += this.maxHP / 3;
+        } else {
+            this.currentHP = this.maxHP;
+        }
+    }
+
+    public void levelUp() {
+        this.levelUpAttack();
+        this.levelUpDefense();
+        this.levelUpMaxHP();
+        this.level += 1;
+    }
+
+    private void levelUpMaxHP() {
         int d6 = GameLogic.diceRoll(1);
         this.maxHP += d6;
     }
 
-    public void levelUpDefense() {
+    private void levelUpDefense() {
         int d6 = GameLogic.diceRoll(1);
         this.defense += d6;
     }
 
-    public void levelUpAttack() {
+    private void levelUpAttack() {
         int d6 = GameLogic.diceRoll(1);
         this.attack += d6;
     }
+
     @Override
     public String toString() {
-        return "Hero (Level " + level + ") HP: " + currentHP + "/" + maxHP + " | DP: " + defense + " | SP: " + attack + " | Moves: " + movesCount;
+        String key = new String(Character.toChars(0x1F511));
+        String status = "Hero (Level " + level + ") HP: " + currentHP + "/" + maxHP + " | DP: " + defense + " | SP: " + attack;
+        if (this.hasKey) {
+            return status + " | " + key;
+        } else {
+            return status;
+        }
     }
 
     public void faceLeft() {
@@ -95,5 +141,16 @@ public class Hero extends GameCharacter implements Impenetrable {
                 break;
         }
         return false;
+    }
+
+    public void strike(Monster monster) {
+        int strikeValue = this.attack + GameLogic.diceRoll(1) * 2;
+        monster.beStriked(strikeValue);
+    }
+
+    public void beStriked(int damage) {
+        if (damage > this.defense) {
+            this.currentHP = Math.max(this.currentHP - (damage - this.defense), 0);
+        }
     }
 }

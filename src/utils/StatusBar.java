@@ -17,7 +17,7 @@ public class StatusBar extends JPanel implements KeyListener {
         this.setBackground(Color.white);
         this.label = new JLabel(GameLogic.getHERO().toString());
         this.label.setHorizontalAlignment(SwingConstants.CENTER);
-        this.setFont(new Font("Serif", Font.BOLD, FONT_SIZE));
+        this.label.setFont(new Font("Serif", Font.BOLD, FONT_SIZE));
         this.add(this.label);
     }
 
