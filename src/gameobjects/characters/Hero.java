@@ -6,6 +6,7 @@ import utils.GameMap;
 
 public class Hero extends GameCharacter implements Impenetrable {
     private int movesCount;
+    private int level;
     public Hero() {
         super(
                 20 + 3 * GameLogic.diceRoll(1),
@@ -16,6 +17,7 @@ public class Hero extends GameCharacter implements Impenetrable {
         this.coordinateY = 0;
         this.imageAddress = "resources/img/gif/hero-down.gif";
         this.movesCount = 0;
+        this.level = 1;
     }
 
     public int getMovesCount() {
@@ -35,6 +37,10 @@ public class Hero extends GameCharacter implements Impenetrable {
     public void levelUpAttack() {
         int d6 = GameLogic.diceRoll(1);
         this.attack += d6;
+    }
+    @Override
+    public String toString() {
+        return "Hero (Level " + level + ") HP: " + currentHP + "/" + maxHP + " | DP: " + defense + " | SP: " + attack;
     }
 
     public void faceLeft() {
