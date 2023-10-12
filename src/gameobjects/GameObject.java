@@ -23,8 +23,4 @@ public abstract class GameObject implements Drawable {
     public int getCoordinateY() {
         return coordinateY;
     }
-
-    public String getImageAddress() {
-        return imageAddress;
-    }
 }

@@ -22,6 +22,10 @@ public class GameMap {
 
     private static final int NUMBER_OF_LEVELS = Objects.requireNonNull(new File(String.valueOf(Paths.get("resources/levels/"))).listFiles()).length;
 
+    public GameMap() throws DataFormatException, FileNotFoundException {
+        loadLevelMap();
+    }
+
     public static void loadLevelMap() throws FileNotFoundException, DataFormatException {
         Path filePath = Paths.get("resources/levels/" + GameLogic.getCurrentLevel() + ".txt");
         if (!Files.exists(filePath)) {

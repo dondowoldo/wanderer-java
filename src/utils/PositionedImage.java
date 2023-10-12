@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class PositionedImage {
 
-    BufferedImage image;
-    int posX, posY;
+    private BufferedImage image;
+    private int posX, posY;
 
     public PositionedImage(String filename, int posX, int posY) {
         this.posX = posX;

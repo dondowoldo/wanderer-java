@@ -27,7 +27,6 @@ public class GameLogic {
             GameMap.loadLevelMap();
             MONSTERS.clear();
             placeMonsters();
-            HERO.resetCoordinates();
             HERO.nextLevel();
         }
     }

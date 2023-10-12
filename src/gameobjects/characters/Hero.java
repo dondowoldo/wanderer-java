@@ -30,12 +30,6 @@ public class Hero extends GameCharacter implements Impenetrable {
         this.hasKey = true;
     }
 
-    public void resetCoordinates() {
-        this.coordinateX = 0;
-        this.coordinateY = 0;
-        this.hasKey = false;
-    }
-
     public boolean hasKey() {
         return hasKey;
     }
@@ -45,6 +39,9 @@ public class Hero extends GameCharacter implements Impenetrable {
     }
 
     public void nextLevel() {
+        this.coordinateX = 0;
+        this.coordinateY = 0;
+        this.hasKey = false;
         Random random = new Random();
         int chance = random.nextInt(10) + 1;
         if (chance <= 5) {
