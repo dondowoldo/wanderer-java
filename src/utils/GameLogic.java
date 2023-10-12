@@ -21,7 +21,7 @@ public class GameLogic {
     private static int currentLevel;
 
     public GameLogic() {
-        this.currentLevel = 1;
+        currentLevel = 1;
     }
 
     public static List<Monster> getMONSTERS() {
